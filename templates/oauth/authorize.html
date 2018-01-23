@@ -1,4 +1,4 @@
-{% extends "oauth.html" %}
+{% extends "oauth/oauth.html" %}
 {% load staticfiles %}
 
 {% block oauth %}
@@ -8,6 +8,10 @@
 
             <p>
                 To connect Jenkins to Alexa you must create a user with a password or token.
+                Instructions are available from
+                <a href="https://support.cloudbees.com/hc/en-us/articles/115003090592-How-to-re-generate-my-Jenkins-user-token" target="_blank">
+                    CloudBees support
+                </a>.
             </p>
 
             <form class="submit-once" method="POST" name="login" id="login" action="{% url 'verify' %}">

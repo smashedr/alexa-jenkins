@@ -15,16 +15,6 @@ logger = logging.getLogger('app')
 config = settings.CONFIG['app']
 
 
-def has_success(request):
-    """
-    View  /success
-    This is for debugging only
-    You will be redirected back to Alexa
-    I am not even sure if this is even used...
-    """
-    return render(request, 'oauth/success.html')
-
-
 def has_error(request):
     """
     View  /error
@@ -109,11 +99,6 @@ def do_verify(request):
         )
         td.save()
 
-        messages.add_message(
-            request, messages.SUCCESS,
-            'Successfully Authenticated Jenkins.',
-            extra_tags='success',
-        )
         get_vars = {
             'code': code, 'state': request.session['state']
         }
@@ -172,17 +157,17 @@ def give_token(request):
         )
 
 
-def error_resp(error_code, error_msg):
-    resp = {'ErrorCode': error_code, 'Error': error_msg}
-    return resp
-
-
 def gen_rand(length):
     return ''.join(
         random.choice(
             string.ascii_uppercase + string.digits
         ) for _ in range(length)
     )
+
+
+def error_resp(error_code, error_msg):
+    resp = {'ErrorCode': error_code, 'Error': error_msg}
+    return resp
 
 
 def log_req(request):

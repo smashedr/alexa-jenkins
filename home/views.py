@@ -14,7 +14,7 @@ def home_view(request):
 @require_http_methods(["GET"])
 def privacy_policy(request):
     log_req(request)
-    return render(request, 'home.html')
+    return render(request, 'privacy.html')
 
 
 def log_req(request):

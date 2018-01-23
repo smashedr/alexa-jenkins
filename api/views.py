@@ -1,6 +1,5 @@
 import json
 import logging
-# from django.conf import settings
 from django.shortcuts import HttpResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
@@ -8,9 +7,7 @@ from api.alexa import alexa_resp
 from api.models import TokenDatabase
 from jenkinsapi.jenkins import Jenkins
 
-
 logger = logging.getLogger('app')
-# config = settings.CONFIG
 
 
 @require_http_methods(["GET"])
