@@ -100,14 +100,15 @@ def do_verify(request):
             logger.exception(error)
             messages.add_message(
                 request, messages.WARNING,
-                'Error Accessing Jenkins Server',
+                'Error Authorizing Jenkins Server',
                 extra_tags='danger',
             )
             return redirect('authorize')
 
         uuid = gen_rand(50)
         code = gen_rand(25)
-        logger.info(code)
+        logger.info('uuid: {}'.format(uuid))
+        logger.info('code: {}'.format(code))
         td = TokenDatabase(
             uuid=uuid,
             code=code,
