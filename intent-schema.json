@@ -1,12 +1,6 @@
 {
   "intents": [
     {
-      "intent": "GetVersion"
-    },
-    {
-      "intent": "GetJobsTotal"
-    },
-    {
       "intent": "BuildJob",
       "slots": [
         {
@@ -14,6 +8,12 @@
           "type": "LITERAL"
         }
       ]
+    },
+    {
+      "intent": "GetVersion"
+    },
+    {
+      "intent": "GetJobsTotal"
     }
   ]
 }

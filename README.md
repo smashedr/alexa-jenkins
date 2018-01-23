@@ -49,7 +49,7 @@ This skill is currently in beta testing. New features are being added and bugs a
 ## Phrases
 
 - Alexa, ask Jenkins for the current version
-- Alexa, ask Jenkins how many jobs total
+- Alexa, ask Jenkins how many total jobs
 
 ## Keywords
 

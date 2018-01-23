@@ -1,3 +1,7 @@
+BuildJob start a new build for {jenkins job name|job}
+BuildJob deploy {jenkins job name|job}
+BuildJob build {jenkins job name|job}
+
 GetVersion for the current version
 GetVersion what the current version is
 GetVersion for the version
@@ -8,5 +12,3 @@ GetJobsTotal for the total job count
 GetJobsTotal for total jobs
 GetJobsTotal for a total job count
 GetJobsTotal for a job count
-
-BuildJob build {jenkins job name|job}
