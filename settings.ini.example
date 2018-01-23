@@ -15,7 +15,6 @@ db_host        = mysql
 db_port        = 3306
 
 [app]
-api_token      = xxxxxxxxxxxxxxxxxxxx
 client_id      = xxxxxxxxxxxxxxxxxxxx
 client_secret  = xxxxxxxxxxxxxxxxxxxx
 redirect_uris  = null

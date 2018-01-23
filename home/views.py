@@ -11,6 +11,12 @@ def home_view(request):
     return render(request, 'home.html')
 
 
+@require_http_methods(["GET"])
+def privacy_policy(request):
+    log_req(request)
+    return render(request, 'home.html')
+
+
 def log_req(request):
     """
     DEBUGGING ONLY

@@ -34,15 +34,6 @@ def has_error(request):
     return render(request, 'oauth/error.html')
 
 
-def privacy_policy(request):
-    """
-    View  /privacy
-    This is copied from old project
-    It will be removed and added to home
-    """
-    return render(request, 'oauth/privacy.html')
-
-
 @require_http_methods(['GET'])
 def do_authorize(request):
     """
