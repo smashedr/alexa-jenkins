@@ -54,9 +54,7 @@ def get_jobs_total(event):
     try:
         jenkins = init_jenkins(event)
         l = jenkins.get_jobs_list()
-        resp = event['request']['intent']['slots']['job']['value']
-        logger.info(resp)
-        speech = 'Coming soon.'
+        speech = 'There are a total of {} jobs.'.format(len(l))
         return alexa_resp(speech, 'Total Jobs')
     except Exception as error:
         logger.exception(error)
@@ -68,7 +66,9 @@ def build_job(event):
     try:
         jenkins = init_jenkins(event)
         l = jenkins.get_jobs_list()
-        speech = 'There are a total of {} jobs.'.format(len(l))
+        resp = event['request']['intent']['slots']['job']['value']
+        logger.info(resp)
+        speech = 'Coming soon.'
         return alexa_resp(speech, 'Total Jobs')
     except Exception as error:
         logger.exception(error)
