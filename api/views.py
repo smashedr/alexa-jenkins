@@ -29,6 +29,8 @@ def alexa_post(request):
             return get_version(event)
         elif intent == 'GetJobsTotal':
             return get_jobs_total(event)
+        elif intent == 'BuildJob':
+            return build_job(event)
         else:
             raise ValueError('Unknown Intent')
     except Exception as error:
@@ -49,6 +51,20 @@ def get_version(event):
 
 def get_jobs_total(event):
     logger.info('GetJobsTotal')
+    try:
+        jenkins = init_jenkins(event)
+        l = jenkins.get_jobs_list()
+        resp = event['request']['intent']['slots']['job']['value']
+        logger.info(resp)
+        speech = 'Coming soon.'
+        return alexa_resp(speech, 'Total Jobs')
+    except Exception as error:
+        logger.exception(error)
+        return alexa_resp('Error, {}.'.format(error), 'Error')
+
+
+def build_job(event):
+    logger.info('BuildJob')
     try:
         jenkins = init_jenkins(event)
         l = jenkins.get_jobs_list()

@@ -5,6 +5,15 @@
     },
     {
       "intent": "GetJobsTotal"
+    },
+    {
+      "intent": "BuildJob",
+      "slots": [
+        {
+          "name": "job",
+          "type": "LITERAL"
+        }
+      ]
     }
   ]
 }

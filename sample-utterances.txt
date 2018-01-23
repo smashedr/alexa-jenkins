@@ -8,3 +8,5 @@ GetJobsTotal for the total job count
 GetJobsTotal for total jobs
 GetJobsTotal for a total job count
 GetJobsTotal for a job count
+
+BuildJob build {jenkins job name|job}
