@@ -31,8 +31,23 @@ def alexa_post(request):
             return get_jobs_total(event)
         elif intent == 'BuildJob':
             return build_job(event)
+        elif intent == 'GetSlaves':
+            return get_nodes(event)
         else:
             raise ValueError('Unknown Intent')
+    except Exception as error:
+        logger.exception(error)
+        return alexa_resp('Error, {}.'.format(error), 'Error')
+
+
+def get_nodes(event):
+    logger.info('GetSlaves')
+    try:
+        jenkins = init_jenkins(event)
+        nodes = jenkins.get_nodes()
+        total = len(nodes.keys())
+        speech = 'There are a total of {} slaves.'
+        return alexa_resp(speech, 'Jenkins Slaves')
     except Exception as error:
         logger.exception(error)
         return alexa_resp('Error, {}.'.format(error), 'Error')
