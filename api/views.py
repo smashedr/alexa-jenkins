@@ -39,8 +39,25 @@ def alexa_post(request):
             return get_slave_info(event)
         elif intent == 'WhoIAm':
             return who_am_i(event)
+        elif intent == 'GetLabel':
+            return get_label(event)
         else:
             raise ValueError('Unknown Intent')
+    except Exception as error:
+        logger.exception(error)
+        return alexa_resp('Error, {}.'.format(error), 'Error')
+
+
+def get_label(event):
+    logger.info('GetLabel')
+    try:
+        label = event['request']['intent']['slots']['label']['value']
+        jenkins = init_jenkins(event)
+        l = jenkins.get_label('ubuntu')
+        total = len(l.get_tied_job_names())
+        s = '' if total == 1 else 's'
+        speech = 'Label {} has {} job{} attached.'.format(label, total, s)
+        return alexa_resp(speech, 'Slave Label')
     except Exception as error:
         logger.exception(error)
         return alexa_resp('Error, {}.'.format(error), 'Error')
@@ -75,22 +92,7 @@ def get_slave_info(event):
         nodes = jenkins.get_nodes()
         keys = nodes.keys()
         logger.info('keys: {}'.format(keys))
-        results = keys[:]
-        logger.info('start results: {}'.format(keys))
-        for term in search_terms:
-            logger.info('term: {}'.format(term))
-            for k in keys:
-                logger.info('k: {}'.format(k))
-                if term not in k.lower():
-                    logger.info('term: "{}" is NOT in key "{}"'.format(term, k))
-                    logger.info('removing: {}'.format(k))
-                    try:
-                        results.remove(k)
-                    except:
-                        pass
-                else:
-                    logger.info('term: "{}" YES is in key "{}"'.format(term, k))
-        logger.info('end results: {}'.format(results))
+        results = search_nodes(keys, search_terms)
         if len(results) == 0:
             speech = 'No results found for: {}'.format(' '.join(search_terms))
         elif len(results) == 1:
@@ -185,6 +187,26 @@ def build_job(event):
     except Exception as error:
         logger.exception(error)
         return alexa_resp('Error, {}.'.format(error), 'Error')
+
+
+def search_nodes(keys, search_terms):
+    results = keys[:]
+    logger.info('start results: {}'.format(keys))
+    for term in search_terms:
+        logger.info('term: {}'.format(term))
+        for k in keys:
+            logger.info('k: {}'.format(k))
+            if term not in k.lower():
+                logger.info('term: "{}" is NOT in key "{}"'.format(term, k))
+                logger.info('removing: {}'.format(k))
+                try:
+                    results.remove(k)
+                except:
+                    pass
+            else:
+                logger.info('term: "{}" YES is in key "{}"'.format(term, k))
+    logger.info('end results: {}'.format(results))
+    return results
 
 
 def init_jenkins(event):
