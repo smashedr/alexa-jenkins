@@ -52,7 +52,7 @@ def get_slave_info(event):
         logger.info('value')
         logger.info(event['request']['intent']['slots']['node']['value'])
         logger.info('number')
-        logger.info(event['request']['intent']['slots']['node']['number'])
+        logger.info(event['request']['intent']['slots']['number']['value'])
         speech = 'This will end well.'
         return alexa_resp(speech, 'Jenkins Slaves')
     except Exception as error:
