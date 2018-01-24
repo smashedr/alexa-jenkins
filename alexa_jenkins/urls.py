@@ -7,10 +7,11 @@ import home.views as home
 
 urlpatterns = [
     url(r'^$', home.home_view, name='home'),
-    url(r'^privacy/', home.privacy_policy, name='privacy'),
     url(r'^favicon\.ico$', RedirectView.as_view(
         url=settings.STATIC_URL + 'images/favicon.ico'
     )),
+    url(r'^tos/', home.terms_of_service, name='tos'),
+    url(r'^privacy/', home.privacy_policy, name='privacy'),
     url(r'^api/', include('api.urls')),
     url(r'^oauth/', include('oauth.urls')),
     url(r'^admin/', admin.site.urls, name="django_admin"),

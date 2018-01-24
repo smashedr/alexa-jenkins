@@ -8,13 +8,19 @@ logger = logging.getLogger('app')
 @require_http_methods(["GET"])
 def home_view(request):
     log_req(request)
-    return render(request, 'home.html')
+    return render(request, 'home/home.html')
+
+
+@require_http_methods(["GET"])
+def terms_of_service(request):
+    log_req(request)
+    return render(request, 'home/tos.html')
 
 
 @require_http_methods(["GET"])
 def privacy_policy(request):
     log_req(request)
-    return render(request, 'privacy.html')
+    return render(request, 'home/privacy.html')
 
 
 def log_req(request):

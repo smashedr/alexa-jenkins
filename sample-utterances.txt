@@ -20,14 +20,6 @@ GetSlaves how many slaves total
 GetSlaves how many nodes total
 GetSlaves how many computers total
 
-BuildJob deploy {jenkins job name env|job}
-BuildJob build {jenkins job name env|job}
-BuildJob to start a new build of {jenkins job name env|job}
-BuildJob to start a new deploy of {jenkins job name env|job}
-BuildJob start deploying {jenkins job name env|job}
-BuildJob start building {jenkins job name env|job}
-BuildJob kick off {jenkins job name env|job}
-
 GetVersion for the current version
 GetVersion what the current version is
 GetVersion for the version
@@ -38,3 +30,11 @@ GetJobsTotal for the total job count
 GetJobsTotal for total jobs
 GetJobsTotal for a total job count
 GetJobsTotal for a job count
+
+BuildJob deploy {jenkins job name env|job}
+BuildJob build {jenkins job name env|job}
+BuildJob to start a new build of {jenkins job name env|job}
+BuildJob to start a new deploy of {jenkins job name env|job}
+BuildJob start deploying {jenkins job name env|job}
+BuildJob start building {jenkins job name env|job}
+BuildJob kick off {jenkins job name env|job}
