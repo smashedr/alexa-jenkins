@@ -62,7 +62,9 @@ def get_slave_info(event):
         jenkins = init_jenkins(event)
         nodes = jenkins.get_nodes()
         keys = nodes.keys()
+        logger.info('keys: {}'.format(keys))
         results = keys
+        logger.info('start results: {}'.format(keys))
         for term in search_terms:
             logger.info('term: {}'.format(term))
             for k in keys:
@@ -73,7 +75,7 @@ def get_slave_info(event):
                     results.remove(k)
                 else:
                     logger.info('term: "{}" YES is in key "{}"'.format(term, k))
-        logger.info('results: {}'.format(results))
+        logger.info('end results: {}'.format(results))
         speech = 'This will end well.'
         return alexa_resp(speech, 'Jenkins Slaves')
     except Exception as error:
