@@ -80,8 +80,19 @@ def get_slave_info(event):
                 else:
                     logger.info('term: "{}" YES is in key "{}"'.format(term, k))
         logger.info('end results: {}'.format(results))
-        speech = 'This will end well.'
-        return alexa_resp(speech, 'Jenkins Slaves')
+        if len(results) == 0:
+            speech = 'No results found for: {}'.format(' '.join(search_terms))
+        elif len(results) == 1:
+            speech = 'Congratulations found node, {}'.format(results[0])
+        elif len(results) > 4:
+            speech = 'Found {} results, {}'.format(
+                len(results), ', '.join(results)
+            )
+        else:
+            speech = 'Found a total of {} results for, {}'.format(
+                len(results), ', '.join(search_terms)
+            )
+        return alexa_resp(speech, 'Slave Information')
     except Exception as error:
         logger.exception(error)
         return alexa_resp('Error, {}.'.format(error), 'Error')
