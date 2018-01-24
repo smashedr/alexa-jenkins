@@ -1,5 +1,8 @@
 GetSlaveInfo for the status of {node|node} {number}
 
+WhoIAm who am i
+WhoIAm who i am
+
 GetOnOffStatus for slave stats
 GetOnOffStatus for node stats
 GetOnOffStatus how many slaves are online

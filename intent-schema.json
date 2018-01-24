@@ -33,6 +33,9 @@
     },
     {
       "intent": "GetOnOffStatus"
+    },
+    {
+      "intent": "WhoIAm"
     }
   ]
 }

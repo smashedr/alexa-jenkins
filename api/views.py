@@ -37,8 +37,21 @@ def alexa_post(request):
             return get_on_off_status(event)
         elif intent == 'GetSlaveInfo':
             return get_slave_info(event)
+        elif intent == 'WhoIAm':
+            return who_am_i(event)
         else:
             raise ValueError('Unknown Intent')
+    except Exception as error:
+        logger.exception(error)
+        return alexa_resp('Error, {}.'.format(error), 'Error')
+
+
+def who_am_i(event):
+    logger.info('WhoIAm')
+    try:
+        jenkins = init_jenkins(event)
+        speech = 'You are {}'.format(jenkins.requester.username)
+        return alexa_resp(speech, 'Jenkins User')
     except Exception as error:
         logger.exception(error)
         return alexa_resp('Error, {}.'.format(error), 'Error')
