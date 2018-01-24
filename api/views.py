@@ -49,7 +49,8 @@ def get_on_off_status(event):
         nodes = jenkins.get_nodes()
         online = 0
         for key in nodes.keys():
-            online += 1 if key.is_online() else 0
+            n = jenkins.get_node(key)
+            online += 1 if n.is_online() else 0
         total = len(nodes.keys())
         offline = total - online
         speech = ('Out of {} slaves, '
