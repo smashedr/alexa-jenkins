@@ -47,8 +47,6 @@ def alexa_post(request):
 def get_slave_info(event):
     logger.info('GetSlaveInfo')
     try:
-        # jenkins = init_jenkins(event)
-        # nodes = jenkins.get_nodes()
         logger.info(event['request']['intent']['slots']['node']['value'])
         words = event['request']['intent']['slots']['node']['value']
         search_terms = words.split(' ')
@@ -83,7 +81,14 @@ def get_slave_info(event):
         if len(results) == 0:
             speech = 'No results found for: {}'.format(' '.join(search_terms))
         elif len(results) == 1:
-            speech = 'Congratulations found node, {}'.format(results[0])
+            n = jenkins.get_node('runner01.cssnr.com')
+            on = 'online' if n.is_online() else 'offline'
+            idle = ' and is idle ' if n.is_idle() else ' and is building a job '
+            t = n.is_temporarily_offline()
+            off = ' and is marked as temporarily offline ' if t else ' '
+            speech = '{} is currently{}, has {} executors{}{}'.format(
+                results[0], on, idle, n.get_num_executors(), off
+            )
         elif len(results) > 4:
             speech = 'Found {} results, {}'.format(
                 len(results), ', '.join(results)
