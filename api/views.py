@@ -32,7 +32,9 @@ def alexa_post(request):
         elif intent == 'BuildJob':
             return build_job(event)
         elif intent == 'GetSlaves':
-            return get_nodes(event)
+            return get_total_nodes(event)
+        elif intent == 'GetOnOffStatus':
+            return get_on_off_status(event)
         else:
             raise ValueError('Unknown Intent')
     except Exception as error:
@@ -40,7 +42,26 @@ def alexa_post(request):
         return alexa_resp('Error, {}.'.format(error), 'Error')
 
 
-def get_nodes(event):
+def get_on_off_status(event):
+    logger.info('GetOnOffStatus')
+    try:
+        jenkins = init_jenkins(event)
+        nodes = jenkins.get_nodes()
+        online = 0
+        for key in nodes.keys():
+            online += 1 if key.is_online() else 0
+        total = len(nodes.keys())
+        offline = total - online
+        speech = ('Out of {} slaves, '
+                  '{} are online and '
+                  '{} are offline.').format(total, online, offline)
+        return alexa_resp(speech, 'Slaves Online')
+    except Exception as error:
+        logger.exception(error)
+        return alexa_resp('Error, {}.'.format(error), 'Error')
+
+
+def get_total_nodes(event):
     logger.info('GetSlaves')
     try:
         jenkins = init_jenkins(event)

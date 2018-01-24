@@ -1,6 +1,18 @@
-GetSlaves how many slaves
-GetSlaves how many nodes
-GetSlaves how many computers
+GetOnOffStatus for slave stats
+GetOnOffStatus for slave statistics
+GetOnOffStatus for node stats
+GetOnOffStatus for node statistics
+GetOnOffStatus how many slaves are online
+GetOnOffStatus how many slaves are offline
+GetOnOffStatus how many nodes are online
+GetOnOffStatus how many nodes are offline
+GetOnOffStatus about slaves
+GetOnOffStatus about nodes
+GetOnOffStatus about computers
+
+GetSlaves how many slaves total
+GetSlaves how many nodes total
+GetSlaves how many computers total
 
 BuildJob deploy {jenkins job name env|job}
 BuildJob build {jenkins job name env|job}
