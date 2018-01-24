@@ -88,7 +88,7 @@ def get_slave_info(event):
             t = n.is_temporarily_offline()
             off = ' and is marked as temporarily offline ' if t else ' '
             speech = '{} is currently {}, has {} executors{}{}'.format(
-                name, on, n.get_num_executors(), idle, off
+                name.split('.')[0], on, n.get_num_executors(), idle, off
             )
         elif len(results) > 4:
             speech = 'Found {} results, {}'.format(
