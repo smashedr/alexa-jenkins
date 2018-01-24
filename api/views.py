@@ -64,7 +64,7 @@ def get_slave_info(event):
         nodes = jenkins.get_nodes()
         keys = nodes.keys()
         logger.info('keys: {}'.format(keys))
-        results = keys
+        results = keys[:]
         logger.info('start results: {}'.format(keys))
         for term in search_terms:
             logger.info('term: {}'.format(term))
