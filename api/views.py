@@ -64,8 +64,12 @@ def get_slave_info(event):
         keys = nodes.keys()
         results = keys
         for term in search_terms:
+            logger.info('term: {}'.format(term))
             for k in keys:
+                logger.info('k: {}'.format(k))
                 if term not in k.lower():
+                    logger.info('term: "{}" is not in key "{}"'.format(term, k))
+                    logger.info('removing: {}'.format(k))
                     results.remove(k)
         logger.info('results: {}'.format(results))
         speech = 'This will end well.'
