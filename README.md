@@ -59,7 +59,7 @@ This skill is currently in beta testing. New features are being added and bugs a
 ## Phrases
 
 - Alexa, ask Jenkins for the current version
-- Alexa, ask Jenkins Jenkins for slave stats
+- Alexa, ask Jenkins for slave stats
 - Alexa, ask Jenkins how many total jobs
 
 ## Keywords
