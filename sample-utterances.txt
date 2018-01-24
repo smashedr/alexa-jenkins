@@ -1,4 +1,4 @@
-GetSlaveInfo for the status of {node name|node} {number}
+GetSlaveInfo for the status of {node|node} {number}
 
 GetOnOffStatus for slave stats
 GetOnOffStatus for node stats

@@ -49,10 +49,28 @@ def get_slave_info(event):
     try:
         # jenkins = init_jenkins(event)
         # nodes = jenkins.get_nodes()
-        logger.info('value')
         logger.info(event['request']['intent']['slots']['node']['value'])
-        logger.info('number')
-        logger.info(event['request']['intent']['slots']['number'])
+        words = event['request']['intent']['slots']['node']['value']
+        search_terms = words.split(' ')
+        try:
+            logger.info(event['request']['intent']['slots']['number']['value'])
+            number = event['request']['intent']['slots']['number']['value']
+            search_terms.append(number)
+        except:
+            pass
+
+        jenkins = init_jenkins(event)
+        nodes = jenkins.get_nodes()
+        keys = nodes.keys()
+        results = keys
+        for term in search_terms:
+            for k in keys:
+                if term not in k.lower():
+                    try:
+                        results.remove(k)
+                    except:
+                        pass
+        logger.info('results: {}'.format(results))
         speech = 'This will end well.'
         return alexa_resp(speech, 'Jenkins Slaves')
     except Exception as error:
