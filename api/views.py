@@ -73,7 +73,10 @@ def get_slave_info(event):
                 if term not in k.lower():
                     logger.info('term: "{}" is NOT in key "{}"'.format(term, k))
                     logger.info('removing: {}'.format(k))
-                    results.remove(k)
+                    try:
+                        results.remove(k)
+                    except:
+                        pass
                 else:
                     logger.info('term: "{}" YES is in key "{}"'.format(term, k))
         logger.info('end results: {}'.format(results))
