@@ -81,13 +81,14 @@ def get_slave_info(event):
         if len(results) == 0:
             speech = 'No results found for: {}'.format(' '.join(search_terms))
         elif len(results) == 1:
-            n = jenkins.get_node('runner01.cssnr.com')
+            name = results[0]
+            n = jenkins.get_node(name)
             on = 'online' if n.is_online() else 'offline'
             idle = ' and is idle ' if n.is_idle() else ' and is building a job '
             t = n.is_temporarily_offline()
             off = ' and is marked as temporarily offline ' if t else ' '
-            speech = '{} is currently{}, has {} executors{}{}'.format(
-                results[0], on, n.get_num_executors(), idle, off
+            speech = '{} is currently {}, has {} executors{}{}'.format(
+                name, on, n.get_num_executors(), idle, off
             )
         elif len(results) > 4:
             speech = 'Found {} results, {}'.format(
