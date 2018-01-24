@@ -46,7 +46,7 @@ def get_nodes(event):
         jenkins = init_jenkins(event)
         nodes = jenkins.get_nodes()
         total = len(nodes.keys())
-        speech = 'There are a total of {} slaves.'
+        speech = 'There are a total of {} slaves.'.format(total)
         return alexa_resp(speech, 'Jenkins Slaves')
     except Exception as error:
         logger.exception(error)
