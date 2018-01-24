@@ -53,10 +53,13 @@ def get_label(event):
     try:
         label = event['request']['intent']['slots']['label']['value']
         jenkins = init_jenkins(event)
-        l = jenkins.get_label('ubuntu')
+        l = jenkins.get_label(label)
         total = len(l.get_tied_job_names())
-        s = '' if total == 1 else 's'
-        speech = 'Label {} has {} job{} attached.'.format(label, total, s)
+        if total == 0:
+            speech = 'No labels found matching, {}'.format(label)
+        else:
+            s = '' if total == 1 else 's'
+            speech = 'Label {} has {} job{} attached.'.format(label, total, s)
         return alexa_resp(speech, 'Slave Label')
     except Exception as error:
         logger.exception(error)

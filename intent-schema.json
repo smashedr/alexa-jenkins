@@ -23,6 +23,15 @@
       ]
     },
     {
+      "intent": "GetLabel",
+      "slots": [
+        {
+          "name": "label",
+          "type": "LITERAL"
+        }
+      ]
+    },
+    {
       "intent": "GetVersion"
     },
     {

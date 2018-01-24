@@ -1,5 +1,8 @@
 GetSlaveInfo for the status of {node|node} {number}
 
+GetLabel to look up the label {label|label}
+GetLabel the status of label {label|label}
+
 WhoIAm who am i
 WhoIAm who i am
 
