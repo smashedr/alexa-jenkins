@@ -59,6 +59,7 @@ def get_slave_info(event):
         except:
             pass
 
+        logger.info('search_terms: {}'.format(search_terms))
         jenkins = init_jenkins(event)
         nodes = jenkins.get_nodes()
         keys = nodes.keys()
