@@ -68,9 +68,11 @@ def get_slave_info(event):
             for k in keys:
                 logger.info('k: {}'.format(k))
                 if term not in k.lower():
-                    logger.info('term: "{}" is not in key "{}"'.format(term, k))
+                    logger.info('term: "{}" is NOT in key "{}"'.format(term, k))
                     logger.info('removing: {}'.format(k))
                     results.remove(k)
+                else:
+                    logger.info('term: "{}" YES is in key "{}"'.format(term, k))
         logger.info('results: {}'.format(results))
         speech = 'This will end well.'
         return alexa_resp(speech, 'Jenkins Slaves')
