@@ -66,10 +66,7 @@ def get_slave_info(event):
         for term in search_terms:
             for k in keys:
                 if term not in k.lower():
-                    try:
-                        results.remove(k)
-                    except:
-                        pass
+                    results.remove(k)
         logger.info('results: {}'.format(results))
         speech = 'This will end well.'
         return alexa_resp(speech, 'Jenkins Slaves')
