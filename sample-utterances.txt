@@ -1,7 +1,7 @@
+GetSlaveInfo for the status of {node name|node} {number}
+
 GetOnOffStatus for slave stats
-GetOnOffStatus for slave statistics
 GetOnOffStatus for node stats
-GetOnOffStatus for node statistics
 GetOnOffStatus how many slaves are online
 GetOnOffStatus how many slaves are offline
 GetOnOffStatus how many nodes are online

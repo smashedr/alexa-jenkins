@@ -35,8 +35,26 @@ def alexa_post(request):
             return get_total_nodes(event)
         elif intent == 'GetOnOffStatus':
             return get_on_off_status(event)
+        elif intent == 'GetSlaveInfo':
+            return get_slave_info(event)
         else:
             raise ValueError('Unknown Intent')
+    except Exception as error:
+        logger.exception(error)
+        return alexa_resp('Error, {}.'.format(error), 'Error')
+
+
+def get_slave_info(event):
+    logger.info('GetSlaveInfo')
+    try:
+        # jenkins = init_jenkins(event)
+        # nodes = jenkins.get_nodes()
+        logger.info('value')
+        logger.info(event['request']['intent']['slots']['node']['value'])
+        logger.info('number')
+        logger.info(event['request']['intent']['slots']['node']['number'])
+        speech = 'This will end well.'
+        return alexa_resp(speech, 'Jenkins Slaves')
     except Exception as error:
         logger.exception(error)
         return alexa_resp('Error, {}.'.format(error), 'Error')
